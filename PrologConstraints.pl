@@ -1,6 +1,6 @@
 :- use_module(library(clpfd)).
 
-genHelpers([H|T],[H2|T2],[H3|T3]):-H3 in 1..75,H3 #= H * H2, genHelpers(T,T2,T3).
+genHelpers([H|T],[H2|T2],[H3|T3]):-H3 #= H + H2*15, genHelpers(T,T2,T3).
 genHelpers([],[],[]).
 
 genDays([H|T],[H2|T2]):- H2 in 0..4, Temp #= H -1, H2 #= Temp div 3, genDays(T,T2).
@@ -10,7 +10,7 @@ schedule_(Subs,Rooms):-
     Subs = [DB2,ITS,KI,LP,FP,ASWE,SV,DB1,TINF3,SWE,M2,P2,RA,BS,DT,TINF1,M1,P1,VLA,WE,BWL],
     Rooms = [R_DB2,R_ITS,R_KI,R_LP,R_FP,R_ASWE,R_SV,R_DB1,R_TINF3,R_SWE,R_M2,R_P2,R_RA,R_BS,R_DT,R_TINF1,R_M1,R_P1,R_VLA,R_WE,R_BWL],
     Subs ins 1..15,
-    Rooms ins 1..5,
+    Rooms ins 1..3,
     Inf2019 = [DB2,ITS,KI,LP,FP,ASWE,SV],
     Inf2020 = [DB1,TINF3,SWE,M2,P2,RA,BS],
     Inf2021 = [DT,TINF1,M1,P1,VLA,WE,BWL] ,
