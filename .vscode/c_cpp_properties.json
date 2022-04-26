@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/Users/Coked/OneDrive/Dokumente/GitHub/Scheduling_problem/gecode-release-6.2.0/gecode/**"
+                "${workspaceFolder}/gecode-release-6.2.0/**"
             ],
             "defines": [
                 "_DEBUG",

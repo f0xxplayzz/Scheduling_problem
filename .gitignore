@@ -1,2 +1,3 @@
-*.tar.gz
+
 *.zip
+/gecode-release-6.2.0
