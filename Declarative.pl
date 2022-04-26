@@ -57,7 +57,7 @@ nonOverLappingRooms(Vls):-nonOverLappingRooms_(Vls,_).
 nonOverLappingRooms_([vl_r(_,A,B,R)],[r(A,B,R)]).
 nonOverLappingRooms_([vl_r(_,A,B,R)|T],[r(A,B,R)|T2]):- nonOverLappingRooms_(T,T2), not(member(r(A,B,R),T2)).
 
-solve(VRs):-
+solve(Vs):-
     genNums(7,Vls19),
     genNums(14,8,Vls20),
     genNums(21,15,Vls21),
@@ -71,7 +71,7 @@ solve(VRs):-
     genLectures(Vls21,Times,Days,Vs21),
     onePerDay(Vs21),
     append(Vs21,Vs20,T1),
-    append(T1,Vs19,Vs),
+    append(T1,Vs19,Vs). /*
     selectLect(Vs,[1,8],A),
     selectLect(Vs,[3,4,6,16],B),
     selectLect(Vs,[5,9,18],C),
@@ -90,4 +90,4 @@ solve(VRs):-
     maxTwoPerDay(D),maxTwoPerDay(E),maxTwoPerDay(F),
     maxTwoPerDay(G),maxTwoPerDay(H),maxTwoPerDay(I),
     putRooms(Vs,Rooms,VRs),
-    nonOverLappingRooms(VRs).
+    nonOverLappingRooms(VRs). */
