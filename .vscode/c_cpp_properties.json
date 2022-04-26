@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/gecode-release-6.2.0/**"
+                "C:/Program Files/Gecode/include/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -12,7 +12,7 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.19041.0",
-            "intelliSenseMode": "linux-gcc-x86"
+            "intelliSenseMode": "${default}"
         }
     ],
     "version": 4
