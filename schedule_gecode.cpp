@@ -1,5 +1,6 @@
 #include <gecode/int.hh>
 #include <gecode/search.hh>
+#include <gecode/minimodel.hh>
 
 using namespace Gecode;
 
@@ -94,6 +95,31 @@ public:
 		i[0] = m1;
 		i[1] = m2;
 
+		IntVarArray roomHelper(*this, 21);
+		IntVarArray dayHelper(*this, 21);
+
+		IntVarArray dayHelper19(*this, 7);
+		IntVarArray dayHelper20(*this, 7);
+		IntVarArray dayHelper21(*this, 7);
+
+		for (int loop = 0; loop < lectures.size(); loop++) {
+			roomHelper[loop] = expr(*this, lectures[loop] + rooms[loop] * 15);
+			dayHelper[loop] = expr(*this, (lectures[loop] - 1) / 3);
+			if (loop < 7) {
+				dayHelper19[loop] = dayHelper[loop];
+			}
+			else if (loop < 14) {
+				dayHelper20[loop - 7] = dayHelper[loop];
+			}
+			else if (loop < 21) {
+				dayHelper21[loop - 7] = dayHelper[loop];
+			}
+		}
+
+		IntVarArray daysB(*this, 4, 1, 15);
+		IntVarArray daysC(*this, 3, 1, 15);
+		IntVarArray daysG(*this, 3, 1, 15);
+
 		distinct(*this, tinf2019);
 		distinct(*this, tinf2020);
 		distinct(*this, tinf2021);
@@ -106,5 +132,7 @@ public:
 		distinct(*this, g);
 		distinct(*this, h);
 		distinct(*this, i);
+		
+		distinct(*this, roomHelper);
 	}
 };
