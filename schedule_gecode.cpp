@@ -10,27 +10,27 @@ protected:
 	IntVarArray rooms;
 public:
 	Schedule(void) : lectures(*this, 21, 1, 15), rooms(*this, 21, 1, 5) {
-		IntVar db2(lectures[0]), db2_room(rooms[0]),
-			its(lectures[1]), its(rooms[1]),
-			ki(lectures[2]), room_ki(rooms[2]),
-			lp(lectures[3]), room_lp(rooms[3]),
-			fp(lectures[4]), room_fp(rooms[4]),
-			aswe(lectures[5]), room_aswe(rooms[5]),
-			sv(lectures[6]), room_sv(rooms[6]),
-			db1(lectures[7]), room_db1(rooms[7]),
-			tinf3(lectures[8]), room_tinf3(rooms[8]),
-			swe(lectures[9]), room_swe(rooms[9]),
-			m2(lectures[10]), room_m2(rooms[10]),
-			p2(lectures[11]), room_p2(rooms[11]),
-			ra(lectures[12]), room_ra(rooms[12]),
-			bs(lectures[13]), room_bs(rooms[13]),
-			dt(lectures[14]), room_dt(rooms[14]),
-			tinf1(lectures[15]), room_tinf1(rooms[15]),
-			m1(lectures[16]), room_m1(rooms[16]),
-			p1(lectures[17]), room_p1(rooms[17]),
-			vla(lectures[18]), room_vla(rooms[18]),
-			we(lectures[19]), room_we(rooms[19]),
-			bwl(lectures[20]), room_bwl(rooms[20]);
+		IntVar db2(lectures[0]), 
+			its(lectures[1]), 
+			ki(lectures[2]), 
+			lp(lectures[3]),
+			fp(lectures[4]), 
+			aswe(lectures[5]), 
+			sv(lectures[6]), 
+			db1(lectures[7]), 
+			tinf3(lectures[8]), 
+			swe(lectures[9]), 
+			m2(lectures[10]), 
+			p2(lectures[11]),
+			ra(lectures[12]), 
+			bs(lectures[13]), 
+			dt(lectures[14]), 
+			tinf1(lectures[15]),
+			m1(lectures[16]),
+			p1(lectures[17]), 
+			vla(lectures[18]),
+			we(lectures[19]),
+			bwl(lectures[20]);
 
 		IntVarArray tinf2019(*this, 7, 1, 15);
 		tinf2019[0] = db2;
@@ -95,68 +95,6 @@ public:
 		i[0] = m1;
 		i[1] = m2;
 
-		IntVarArray roomHelper(*this, 21);
-		IntVarArray dayHelper(*this, 21);
-
-		IntVarArray dayHelper19(*this, 7);
-		IntVarArray dayHelper20(*this, 7);
-		IntVarArray dayHelper21(*this, 7);
-
-		for (int loop = 0; loop < lectures.size(); loop++) {
-			roomHelper[loop] = expr(*this, lectures[loop] + rooms[loop] * 15);
-			dayHelper[loop] = expr(*this, (lectures[loop] - 1) / 3);
-			if (loop < 7) {
-				dayHelper19[loop] = dayHelper[loop];
-			}
-			else if (loop < 14) {
-				dayHelper20[loop - 7] = dayHelper[loop];
-			}
-			else if (loop < 21) {
-				dayHelper21[loop - 7] = dayHelper[loop];
-			}
-		}
-
-		IntVarArray daysB(*this, 4, 1, 15);
-		IntVarArray daysC(*this, 3, 1, 15);
-		IntVarArray daysG(*this, 3, 1, 15);
-		
-		IntVar mon19; count(*this, dayHelper19, 0, IRT_EQ, mon19);
-		IntVar tue19; count(*this, dayHelper19, 1, IRT_EQ, tue19);
-		IntVar wed19; count(*this, dayHelper19, 2, IRT_EQ, wed19);
-		IntVar thu19; count(*this, dayHelper19, 3, IRT_EQ, thu19);
-		IntVar fri19; count(*this, dayHelper19, 4, IRT_EQ, fri19);
-
-		IntVar mon20; count(*this, dayHelper20, 0, IRT_EQ, mon20);
-		IntVar tue20; count(*this, dayHelper20, 1, IRT_EQ, tue20);
-		IntVar wed20; count(*this, dayHelper20, 2, IRT_EQ, wed20);
-		IntVar thu20; count(*this, dayHelper20, 3, IRT_EQ, thu20);
-		IntVar fri20; count(*this, dayHelper20, 4, IRT_EQ, mon20);
-
-		IntVar mon21;
-		IntVar tue21;
-		IntVar wed21;
-		IntVar thu21;
-		IntVar fri21;
-
-		IntVar monB;
-		IntVar tueB;
-		IntVar wedB;
-		IntVar thuB;
-		IntVar friB;
-
-		IntVar monC;
-		IntVar tueC;
-		IntVar wedC;
-		IntVar thuC;
-		IntVar friC;
-
-		IntVar monG;
-		IntVar tueG;
-		IntVar wedG;
-		IntVar thuG;
-		IntVar friG;
-
-
 		distinct(*this, tinf2019);
 		distinct(*this, tinf2020);
 		distinct(*this, tinf2021);
@@ -169,7 +107,109 @@ public:
 		distinct(*this, g);
 		distinct(*this, h);
 		distinct(*this, i);
+
+		IntVarArray roomHelper(*this, 21);
+		IntVarArray dayHelper(*this, 21, 0, 4);
+
+		IntVarArray dayHelper19(*this, 7);
+		IntVarArray dayHelper20(*this, 7);
+		IntVarArray dayHelper21(*this, 7);
+
+		IntVarArray daysB(*this, 4, 1, 15);
+		IntVarArray daysC(*this, 3, 1, 15);
+		IntVarArray daysG(*this, 3, 1, 15);
+
+		for (int loop = 0; loop < 21; loop++) {
+			roomHelper[loop] = expr(*this, lectures[loop] + rooms[loop] * 15);
+			dayHelper[loop] = expr(*this, (lectures[loop] - 1) / 3);
+			if (loop < 7) {
+				dayHelper19[loop] = dayHelper[loop];
+			}
+			else if (loop < 14) {
+				dayHelper20[loop - 7] = dayHelper[loop];
+			}
+			else if (loop < 21) {
+				dayHelper21[loop - 14] = dayHelper[loop];
+			}
+		}
+
+		daysB[0] = dayHelper[2];
+		daysB[1] = dayHelper[3];
+		daysB[2] = dayHelper[5];
+		daysB[3] = dayHelper[15];
+
+		daysC[0] = dayHelper[4];
+		daysC[1] = dayHelper[8];
+		daysC[2] = dayHelper[17];
+
+		daysG[0] = dayHelper[12];
+		daysG[1] = dayHelper[13];
+		daysG[2] = dayHelper[14];
+
+		count(*this, dayHelper19, 0, IRT_GQ, 1); 
+		count(*this, dayHelper19, 1, IRT_GQ, 1);
+		count(*this, dayHelper19, 2, IRT_GQ, 1); 
+		count(*this, dayHelper19, 3, IRT_GQ, 1); 
+		count(*this, dayHelper19, 4, IRT_GQ, 1); 
+
+		count(*this, dayHelper20, 0, IRT_GQ, 1); 
+		count(*this, dayHelper20, 1, IRT_GQ, 1); 
+		count(*this, dayHelper20, 2, IRT_GQ, 1); 
+		count(*this, dayHelper20, 3, IRT_GQ, 1);
+		count(*this, dayHelper20, 4, IRT_GQ, 1); 
+
+		count(*this, dayHelper21, 0, IRT_GQ, 1); 
+		count(*this, dayHelper21, 1, IRT_GQ, 1); 
+		count(*this, dayHelper21, 2, IRT_GQ, 1); 
+		count(*this, dayHelper21, 3, IRT_GQ, 1); 
+		count(*this, dayHelper21, 4, IRT_GQ, 1); 
+
+		count(*this, daysB, 0, IRT_LQ, 2);
+		count(*this, daysB, 1, IRT_LQ, 2); 
+		count(*this, daysB, 2, IRT_LQ, 2); 
+		count(*this, daysB, 3, IRT_LQ, 2);
+		count(*this, daysB, 4, IRT_LQ, 2); 
+
+		count(*this, daysC, 0, IRT_LQ, 2); 
+		count(*this, daysC, 1, IRT_LQ, 2); 
+		count(*this, daysC, 2, IRT_LQ, 2);
+		count(*this, daysC, 3, IRT_LQ, 2); 
+		count(*this, daysC, 4, IRT_LQ, 2); 
+
+		count(*this, daysG, 0, IRT_LQ, 2);
+		count(*this, daysG, 1, IRT_LQ, 2); 
+		count(*this, daysG, 2, IRT_LQ, 2); 
+		count(*this, daysG, 3, IRT_LQ, 2); 
+		count(*this, daysG, 4, IRT_LQ, 2); 
 		
 		distinct(*this, roomHelper);
+
+		branch(*this, lectures, INT_VAR_SIZE_MIN(), INT_VAL_MIN());
+		branch(*this, rooms, INT_VAR_SIZE_MIN(), INT_VAL_MIN());
+	}
+
+	Schedule(Schedule& s) : Space(s) {
+		lectures.update(*this, s.lectures);
+		rooms.update(*this, s.rooms);
+	}
+
+	virtual Space* copy(void) {
+		return new Schedule(*this);
+	}
+
+	void print(void) const {
+		std::cout << lectures << std::endl;
+		std::cout << rooms << std::endl;
 	}
 };
+
+int main(int argc, char* argv[]) {
+	Schedule* s = new Schedule;
+	DFS<Schedule> e(s);
+	delete s;
+
+	while (Schedule* s = e.next()) {
+		s->print(); delete s;
+	}
+	return 0;
+}
