@@ -1,2 +1,4 @@
 *.zip
 /gecode-release-6.2.0/
+/.vs/
+/.vscode/

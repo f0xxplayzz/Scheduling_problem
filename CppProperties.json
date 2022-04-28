@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "inheritEnvironments": [
+        "msvc_x64"
+      ],
+      "name": "x64-Release",
+      "includePath": [
+        "${workspaceRoot}\\..\\..\\..\\..\\Program Files\\Gecode\\include\\gecode",
+        "${workspaceRoot}\\..\\..\\..\\..\\Program Files\\Gecode\\include\\gecode",
+        "${workspaceRoot}\\..\\..\\..\\..\\Program Files\\Gecode\\include\\gecode",
+        "${workspaceRoot}\\..\\..\\..\\..\\Program Files\\Gecode\\include\\gecode",
+        "${env.INCLUDE}",
+        "${workspaceRoot}\\**",
+        "C:\\Program Files\\Gecode\\include"
+      ],
+      "defines": [
+        "WIN64",
+        "NDEBUG",
+        "UNICODE",
+        "_UNICODE"
+      ],
+      "intelliSenseMode": "windows-msvc-x64"
+    }
+  ]
+}

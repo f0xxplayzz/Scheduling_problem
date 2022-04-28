@@ -90,4 +90,4 @@ solve(Vs):-
     maxTwoPerDay(D),maxTwoPerDay(E),maxTwoPerDay(F),
     maxTwoPerDay(G),maxTwoPerDay(H),maxTwoPerDay(I),
     putRooms(Vs,Rooms,VRs),
-    nonOverLappingRooms(VRs). */
+    nonOverLappingRooms(VRs). 
