@@ -119,6 +119,43 @@ public:
 		IntVarArray daysB(*this, 4, 1, 15);
 		IntVarArray daysC(*this, 3, 1, 15);
 		IntVarArray daysG(*this, 3, 1, 15);
+		
+		IntVar mon19; count(*this, dayHelper19, 0, IRT_EQ, mon19);
+		IntVar tue19; count(*this, dayHelper19, 1, IRT_EQ, tue19);
+		IntVar wed19; count(*this, dayHelper19, 2, IRT_EQ, wed19);
+		IntVar thu19; count(*this, dayHelper19, 3, IRT_EQ, thu19);
+		IntVar fri19; count(*this, dayHelper19, 4, IRT_EQ, fri19);
+
+		IntVar mon20; count(*this, dayHelper20, 0, IRT_EQ, mon20);
+		IntVar tue20; count(*this, dayHelper20, 1, IRT_EQ, tue20);
+		IntVar wed20; count(*this, dayHelper20, 2, IRT_EQ, wed20);
+		IntVar thu20; count(*this, dayHelper20, 3, IRT_EQ, thu20);
+		IntVar fri20; count(*this, dayHelper20, 4, IRT_EQ, mon20);
+
+		IntVar mon21;
+		IntVar tue21;
+		IntVar wed21;
+		IntVar thu21;
+		IntVar fri21;
+
+		IntVar monB;
+		IntVar tueB;
+		IntVar wedB;
+		IntVar thuB;
+		IntVar friB;
+
+		IntVar monC;
+		IntVar tueC;
+		IntVar wedC;
+		IntVar thuC;
+		IntVar friC;
+
+		IntVar monG;
+		IntVar tueG;
+		IntVar wedG;
+		IntVar thuG;
+		IntVar friG;
+
 
 		distinct(*this, tinf2019);
 		distinct(*this, tinf2020);
