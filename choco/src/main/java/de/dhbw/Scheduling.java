@@ -5,7 +5,8 @@ import org.chocosolver.solver.Solution;
 import org.chocosolver.solver.variables.IntVar;
 
 public class Scheduling {
-    public static void main(String[] args) {
+
+    public void schedule(){
         Model model = new Model("scheduling-dhbw");
 
         IntVar[] rooms = new IntVar[21];
@@ -121,5 +122,10 @@ public class Scheduling {
         } else {
             System.out.println("problem");
         }
+    }
+
+    public static void main(String[] args) {
+        Scheduling s = new Scheduling();
+        s.schedule();
     }
 }

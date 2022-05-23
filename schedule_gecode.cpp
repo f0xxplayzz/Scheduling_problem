@@ -1,6 +1,7 @@
 #include <gecode/int.hh>
 #include <gecode/search.hh>
 #include <gecode/minimodel.hh>
+#include <chrono>
 
 using namespace Gecode;
 
@@ -204,12 +205,22 @@ public:
 };
 
 int main(int argc, char* argv[]) {
+
+	using namespace std::chrono;
+	
+	uint64_t  ms = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+
 	Schedule* s = new Schedule;
 	DFS<Schedule> e(s);
 	delete s;
 
 	while (Schedule* s = e.next()) {
 		s->print(); delete s;
+		break;
 	}
+
+	uint64_t  ms2 = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+
+	std::cout << "Time needed:" << ms2 - ms<< std::endl;
 	return 0;
 }

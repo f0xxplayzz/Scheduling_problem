@@ -10,7 +10,7 @@ schedule(Subs,Rooms):-
     Subs = [DB2,ITS,KI,LP,FP,ASWE,SV,DB1,TINF3,SWE,M2,P2,RA,BS,DT,TINF1,M1,P1,VLA,WE,BWL],
     Rooms = [R_DB2,R_ITS,R_KI,R_LP,R_FP,R_ASWE,R_SV,R_DB1,R_TINF3,R_SWE,R_M2,R_P2,R_RA,R_BS,R_DT,R_TINF1,R_M1,R_P1,R_VLA,R_WE,R_BWL],
     Subs ins 1..15,
-    Rooms ins 1..2,
+    Rooms ins 1..5,
     Inf2019 = [DB2,ITS,KI,LP,FP,ASWE,SV],
     Inf2020 = [DB1,TINF3,SWE,M2,P2,RA,BS],
     Inf2021 = [DT,TINF1,M1,P1,VLA,WE,BWL] ,
@@ -51,3 +51,5 @@ schedule(Subs,Rooms):-
     global_cardinality(DaysB,[0-MonB,1-TueB,2-WedB,3-ThuB,4-FriB]),
     global_cardinality(DaysC,[0-MonC,1-TueC,2-WedC,3-ThuC,4-FriC]),
     global_cardinality(DaysG,[0-MonG,1-TueG,2-WedG,3-ThuG,4-FriG]).
+
+test(V,A):- schedule(V,A),label(V),label(A).
