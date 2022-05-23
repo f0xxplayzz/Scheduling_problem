@@ -69,21 +69,15 @@ public class Scheduling {
 
         //B
         IntVar[] dozB = {lectures[2],lectures[3],lectures[5],lectures[15]};
-        for(int i = 0; i< dozB.length;i++){
-            daysB[i] = dozB[i];
-            for(int j = i+1;j<dozB.length;j++){
-                model.arithm(dozB[i],"!=",dozB[j]).post();
-            }
-        }
+        System.arraycopy(dozB, 0, daysB, 0, dozB.length);
+
+        model.allDifferent(dozB).post();
 
         //C
         IntVar[] dozC = {lectures[4],lectures[8],lectures[17]};
-        for(int i = 0; i< dozC.length;i++){
-            daysC[i] = dozC[i];
-            for(int j = i+1;j<dozC.length;j++){
-                model.arithm(dozC[i],"!=",dozC[j]).post();
-            }
-        }
+        System.arraycopy(dozC, 0, daysC, 0, dozC.length);
+
+        model.allDifferent(dozC).post();
 
         //D
         model.arithm(lectures[19],"!=",lectures[20]).post();
@@ -93,12 +87,9 @@ public class Scheduling {
 
         //G
         IntVar[] dozG = {lectures[12],lectures[13],lectures[14]};
-        for(int i = 0; i< dozG.length;i++){
-            daysG[i] = dozG[i];
-            for(int j = i+1;j<dozG.length;j++){
-                model.arithm(dozG[i],"!=",dozG[j]).post();
-            }
-        }
+        System.arraycopy(dozG, 0, daysG, 0, dozG.length);
+
+        model.allDifferent(dozG).post();
 
         //H
         model.arithm(lectures[1],"!=",lectures[6]).post();
