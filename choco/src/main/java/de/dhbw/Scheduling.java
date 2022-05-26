@@ -4,6 +4,8 @@ import org.chocosolver.solver.Model;
 import org.chocosolver.solver.Solution;
 import org.chocosolver.solver.variables.IntVar;
 
+import java.util.Date;
+
 public class Scheduling {
 
     public void schedule(){
@@ -125,7 +127,16 @@ public class Scheduling {
     }
 
     public static void main(String[] args) {
+
+        Date date = new Date();
+        long t1 = date.getTime();
+
         Scheduling s = new Scheduling();
         s.schedule();
+
+        Date date2 = new Date();
+        long t2 = date2.getTime();
+
+        System.out.println("Time needed:" + (t2-t1));
     }
 }

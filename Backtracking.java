@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Stack;
 
 public class Backtracking {
@@ -174,6 +175,11 @@ public class Backtracking {
     }
 
     public static void main(String[] args) {
+
+        Date date = new Date();
+
+        long t1 = date.getTime();
+
         Stack<Lecture> decisions = new Stack<>();
 
         Lecture createdSchedule[] = new Lecture[21];
@@ -208,7 +214,7 @@ public class Backtracking {
             if (!fail) {
                 for (int b = 0; b <= 4; b++) {
                     for (int a = 0; a <= 2; a++) {
-                        for (int r = 0; r <= 1; r++) {
+                        for (int r = 0; r <= 4; r++) {
                             if (schedule.rooms[r][a][b] == 0 && !isSet
                                     && (r > lockedRoom | a > lockedTime | b > lockedDay)) {
                                 switch (i) {
@@ -460,5 +466,11 @@ public class Backtracking {
                 l.print();
             }
         }
+
+        Date date2 = new Date();
+
+        long t2 = date2.getTime();
+
+        System.out.println("Time needed:" + (t2 - t1));
     }
 }

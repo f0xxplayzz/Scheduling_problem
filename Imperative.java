@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Date;
 
 public class Imperative {
     int inf2019[][] = new int[3][5];
@@ -173,6 +174,10 @@ public class Imperative {
     }
 
     public static void main(String[] args) {
+
+        Date date = new Date();
+
+        long t1 = date.getTime();
 
         Lecture createdSchedule[] = new Lecture[21];
 
@@ -382,5 +387,11 @@ public class Imperative {
                 l.print();
             }
         }
+
+        Date date2 = new Date();
+
+        long t2 = date2.getTime();
+
+        System.out.println("Time needed:" + (t2 - t1));
     }
 }
