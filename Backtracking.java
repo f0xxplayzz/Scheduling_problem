@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Stack;
 
 public class Backtracking {
@@ -175,11 +174,6 @@ public class Backtracking {
     }
 
     public static void main(String[] args) {
-
-        Date date = new Date();
-
-        long t1 = date.getTime();
-
         Stack<Lecture> decisions = new Stack<>();
 
         Lecture createdSchedule[] = new Lecture[21];
@@ -466,11 +460,5 @@ public class Backtracking {
                 l.print();
             }
         }
-
-        Date date2 = new Date();
-
-        long t2 = date2.getTime();
-
-        System.out.println("Time needed:" + (t2 - t1));
     }
 }
